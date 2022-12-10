@@ -9,51 +9,58 @@ public class Maze {
     public Maze() {
         // Note: in my real test, I will create much larger
         // and more complicated map
-        // rows = 4;
+        rows = 4;
+        cols = 5;
+        map = new String[rows];
+        map[0] = ".....";
+        map[1] = ".   X";
+        map[2] = ".   .";
+        map[3] = ".....";
+
+        // rows = 3;
         // cols = 5;
         // map = new String[rows];
         // map[0] = ".....";
-        // map[1] = ". X";
-        // map[2] = ". .";
-        // map[3] = ".....";
+        // map[1] = ".   X";
+        // map[2] = ".....";
 
         // Test Case 2
-        rows = 30;
-        map = new String[rows];
-        cols = 100;
-        map[0] = "....................................................................................................";
-        map[1] = ".                                              ..                                                  .";
-        map[2] = ".                                              ..                          ..                      .";
-        map[3] = ".                                              ..                          ..                      .";
-        map[4] = ".      ..............                          ..                  ...     ..                      .";
-        map[5] = ".            .............                     ..                  ...     ..   ....................";
-        map[6] = ".                                              ..                  ...     ..   ....................";
-        map[7] = ".       ....  .   .  .  .....                                                   ...     ..         .";
-        map[8] = ".       .  .  .. ..  .    .            ........                     .........   ...     ..         .";
-        map[9] = ".       ....  . . .  .    .            ........                    .........    ...     ..         .";
-        map[10] = ".       ..    .   .  .    .            ........                                 ...     ..         .";
-        map[11] = ".       . .   .   .  .    .        .   ........                        ..                       ....";
-        map[12] = ".       .  .  .   .  .    .        .   ........                        ..                       ....";
-        map[13] = ".                                  .                                   ..  ..           .......    .";
-        map[14] = ".    ..       ..    ..       ..    .        ..      ..    ...          ..  ..           .......    .";
-        map[15] = ".    ....     ..    ....     ..    .        ..      ..    .....        ..  ..                      .";
-        map[16] = ".    .. ..    ..    .. ..    ..        .    ..      ..    ..  ...  ..      ..                      .";
-        map[17] = ".    ..  ..   ..    ..  ..   ..   .......   ..........    ..   ..  ..      ..                      .";
-        map[18] = ".    ..   ..  ..    ..   ..  ..   .......   ..........    ..   ..  ..      ..                      .";
-        map[19] = ".    ..    .. ..    ..    .. ..        .    ..      ..    ..  ...          ..                      .";
-        map[20] = ".    ..     ....    ..     ....             ..      ..    .....            ..    ..........        .";
-        map[21] = ".    ..       ..    ..       ..             ..      ..    ...              ..    ..........        .";
-        map[22] = ".                                                                          ..                      .";
-        map[23] = ".      .            .           .            .                             ..          X           .";
-        map[24] = ".      .     .      .           .            .                             ..                      .";
-        map[25] = ".      .     .      .                        .        .                    ..                      .";
-        map[26] = ".      .     .      .                        .        .                    ..                      .";
-        map[27] = ".      .     .      .           .            .        .                    ..                      .";
-        map[28] = ".            .                  .                     .                    ..                      .";
-        map[29] = "....................................................................................................";
+        // rows = 30;
+        // map = new String[rows];
+        // cols = 100;
+        // map[0] = "....................................................................................................";
+        // map[1] = ".                                              ..                                                  .";
+        // map[2] = ".                                              ..                          ..                      .";
+        // map[3] = ".                                              ..                          ..                      .";
+        // map[4] = ".      ..............                          ..                  ...     ..                      .";
+        // map[5] = ".            .............                     ..                  ...     ..   ....................";
+        // map[6] = ".                                              ..                  ...     ..   ....................";
+        // map[7] = ".       ....  .   .  .  .....                                                   ...     ..         .";
+        // map[8] = ".       .  .  .. ..  .    .            ........                     .........   ...     ..         .";
+        // map[9] = ".       ....  . . .  .    .            ........                    .........    ...     ..         .";
+        // map[10] = ".       ..    .   .  .    .            ........                                 ...     ..         .";
+        // map[11] = ".       . .   .   .  .    .        .   ........                        ..                       ....";
+        // map[12] = ".       .  .  .   .  .    .        .   ........                        ..                       ....";
+        // map[13] = ".                                  .                                   ..  ..           .......    .";
+        // map[14] = ".    ..       ..    ..       ..    .        ..      ..    ...          ..  ..           .......    .";
+        // map[15] = ".    ....     ..    ....     ..    .        ..      ..    .....        ..  ..                      .";
+        // map[16] = ".    .. ..    ..    .. ..    ..        .    ..      ..    ..  ...  ..      ..                      .";
+        // map[17] = ".    ..  ..   ..    ..  ..   ..   .......   ..........    ..   ..  ..      ..                      .";
+        // map[18] = ".    ..   ..  ..    ..   ..  ..   .......   ..........    ..   ..  ..      ..                      .";
+        // map[19] = ".    ..    .. ..    ..    .. ..        .    ..      ..    ..  ...          ..                      .";
+        // map[20] = ".    ..     ....    ..     ....             ..      ..    .....            ..    ..........        .";
+        // map[21] = ".    ..       ..    ..       ..             ..      ..    ...              ..    ..........        .";
+        // map[22] = ".                                                                          ..                      .";
+        // map[23] = ".      .            .           .            .                             ..          X           .";
+        // map[24] = ".      .     .      .           .            .                             ..                      .";
+        // map[25] = ".      .     .      .                        .        .                    ..                      .";
+        // map[26] = ".      .     .      .                        .        .                    ..                      .";
+        // map[27] = ".      .     .      .           .            .        .                    ..                      .";
+        // map[28] = ".            .                  .                     .                    ..                      .";
+        // map[29] = "....................................................................................................";
         // Test Case End
 
-        robotRow = 1;
+        robotRow = 2;
         robotCol = 1;
         steps = 0;
     }
@@ -99,21 +106,11 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        (new Robot()).navigate();
+        Robot r = new Robot();
+        r.navigate();
+        r.printSight();
     }
 }
-
-class Cell {
-    int x, y;
-    String dir;
-
-    public Cell(int i, int j) {
-        this.x = i;
-        this.y = j;
-        this.dir = "UP";
-    }
-}
-
 class Robot {
     String[][] sight = new String[2000][2000];
     ArrayStack<String> stack;
@@ -132,6 +129,20 @@ class Robot {
         }
     }
 
+    public void printSight() {
+        for (int i = 990; i < 1010; i++) {
+            for (int j = 990; j < 1010; j++) {
+                if (sight[i][j] == "") {
+                    System.out.print("-");
+                } else {
+                    System.out.println(sight[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
     // A very simple implementation
     // where the robot just go randomly
     public void navigate() {
@@ -141,25 +152,27 @@ class Robot {
         initSight();
         clearStack();
         boolean isBacktracking = false;
-        int exploreX = 1000, exploreY = 1000; // position of the robot
-        int curX = 1000, curY = 1000;
-        sight[curX][curY] = "visited";
+        int exploreRow = 1000, exploreCol = 1000; // position of the robot
+        int curRow = 1000, curCol = 1000;
+        sight[curRow][curCol] = "visited";
 
         String direction = "DOWN"; // Down - Left - Right - Up
         result = maze.go(direction);
         System.out.println(direction);
-        System.out.println("cur x " + curX + " cur Y " + curY);
-        exploreY++;
+        System.out.println("cur x " + curRow + " cur Y " + curCol);
+        exploreRow++;
+
+        // DFS - Backtracking - Find the deepest path
 
         while (!result.equals("win")) {
             if (result.equals("false")) {
-                sight[exploreX][exploreY] = ".";
-                exploreX = curX;
-                exploreY = curY;
+                sight[exploreRow][exploreCol] = ".";
+                exploreRow = curRow;
+                exploreCol = curCol;
             } else {
-                curX = exploreX;
-                curY = exploreY;
-                sight[curX][curY] = "visited";
+                curRow = exploreRow;
+                curCol = exploreCol;
+                sight[curRow][curCol] = "visited";
                 if (isBacktracking == false) {
                     stack.push(direction);
                 }
@@ -168,39 +181,41 @@ class Robot {
             isBacktracking = false;
 
             // Calculate direction
-            if (sight[curX][curY + 1].isEmpty()) {
+            if (sight[curRow + 1][curCol].isEmpty()) {
                 direction = "DOWN";
-                exploreY++;
-            } else if (sight[curX - 1][curY].isEmpty()) {
+                exploreRow++;
+            } else if (sight[curRow][curCol - 1].isEmpty()) {
                 direction = "LEFT";
-                exploreX--;
-            } else if (sight[curX + 1][curY].isEmpty()) {
+                exploreCol--;
+            } else if (sight[curRow][curCol + 1].isEmpty()) {
                 direction = "RIGHT";
-                exploreX++;
-            } else if (sight[curX][curY - 1].isEmpty()) {
+                exploreCol++;
+            } else if (sight[curRow - 1][curCol].isEmpty()) {
                 direction = "UP";
-                exploreY--;
+                exploreRow--;
             } else {
                 isBacktracking = true;
                 direction = stack.peek();
                 if (direction.equals("DOWN")) {
                     direction = "UP";
-                    exploreY--;
+                    exploreRow--;
                 } else if (direction.equals("LEFT")) {
                     direction = "RIGHT";
-                    exploreX++;
+                    exploreCol++;
                 } else if (direction.equals("RIGHT")) {
                     direction = "LEFT";
-                    exploreX--;
+                    exploreCol--;
                 } else if (direction.equals("UP")) {
                     direction = "DOWN";
-                    exploreY++;
+                    exploreRow++;
                 }
                 stack.pop();
             }
+
             System.out.println(direction);
-            System.out.println("cur x " + curX + " cur Y " + curY);
+            System.out.println("cur x " + curRow + " cur Y " + curCol);
             result = maze.go(direction);
+        
         }
     }
 }
