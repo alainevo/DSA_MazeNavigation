@@ -108,7 +108,6 @@ public class Maze {
     public static void main(String[] args) {
         Robot r = new Robot();
         r.navigate();
-        r.printSight();
     }
 }
 class Robot {
@@ -142,7 +141,6 @@ class Robot {
         }
     }
 
-
     // A very simple implementation
     // where the robot just go randomly
     public void navigate() {
@@ -159,7 +157,7 @@ class Robot {
         String direction = "DOWN"; // Down - Left - Right - Up
         result = maze.go(direction);
         System.out.println(direction);
-        System.out.println("cur x " + curRow + " cur Y " + curCol);
+        // System.out.println("cur x " + curRow + " cur Y " + curCol);
         exploreRow++;
 
         // DFS - Backtracking - Find the deepest path
@@ -213,7 +211,7 @@ class Robot {
             }
 
             System.out.println(direction);
-            System.out.println("cur x " + curRow + " cur Y " + curCol);
+            // System.out.println("cur x " + curRow + " cur Y " + curCol);
             result = maze.go(direction);
         
         }
