@@ -128,36 +128,29 @@ class Robot {
         }
     }
 
-    public void printSight() {
-        for (int i = 990; i < 1010; i++) {
-            for (int j = 990; j < 1010; j++) {
-                if (sight[i][j] == "") {
-                    System.out.print("-");
-                } else {
-                    System.out.println(sight[i][j]);
-                }
-            }
-            System.out.println();
-        }
-    }
-
     // A very simple implementation
     // where the robot just go randomly
     public void navigate() {
+        // Create a new Maze object
         Maze maze = new Maze();
         String result = "";
+
+        // Initialize stack for further backtracking
         stack = new ArrayStack<String>();
+
+        // Clear array and stack to make sure the stack and array is empty at first
         initSight();
         clearStack();
-        boolean isBacktracking = false;
-        int exploreRow = 1000, exploreCol = 1000; // position of the robot
-        int curRow = 1000, curCol = 1000;
-        sight[curRow][curCol] = "visited";
 
-        String direction = "RIGHT"; // Right - Left - Down - Up
+        // Initialize default value
+        boolean isBacktracking = false;
+        int exploreRow = 1000, exploreCol = 1000; // store the position of explored cell
+        int curRow = 1000, curCol = 1000; // current position of the robot
+        sight[curRow][curCol] = "visited"; // mark the current cell value of robot as "visited"
+
+        String direction = "RIGHT"; // Right - Left - Down - Up = Right - Down - Left - Up
         result = maze.go(direction);
         System.out.println(direction);
-        // System.out.println("cur x " + curRow + " cur Y " + curCol);
         exploreCol++;
 
         // DFS - Backtracking - Find the deepest path
@@ -181,13 +174,13 @@ class Robot {
             if (sight[curRow][curCol + 1].isEmpty()) {
                 direction = "RIGHT";
                 exploreCol++;
-            } else if (sight[curRow][curCol - 1].isEmpty()) {
-                direction = "LEFT";
-                exploreCol--;
             } else if (sight[curRow + 1][curCol].isEmpty()) {
                 direction = "DOWN";
                 exploreRow++;
-            } else if (sight[curRow - 1][curCol].isEmpty()) {
+            } else if (sight[curRow][curCol - 1].isEmpty()) {
+                direction = "LEFT";
+                exploreCol--;
+            }  else if (sight[curRow - 1][curCol].isEmpty()) {
                 direction = "UP";
                 exploreRow--;
             } else {
@@ -196,12 +189,12 @@ class Robot {
                 if (direction.equals("RIGHT")) {
                     direction = "LEFT";
                     exploreCol--;
-                } else if (direction.equals("LEFT")) {
-                    direction = "RIGHT";
-                    exploreCol++;
                 } else if (direction.equals("DOWN")) {
                     direction = "UP";
                     exploreRow--;
+                } else if (direction.equals("LEFT")) {
+                    direction = "RIGHT";
+                    exploreCol++;
                 } else if (direction.equals("UP")) {
                     direction = "DOWN";
                     exploreRow++;
@@ -210,9 +203,7 @@ class Robot {
             }
 
             System.out.println(direction);
-            // System.out.println("cur x " + curRow + " cur Y " + curCol);
             result = maze.go(direction);
-        
         }
     }
 }
