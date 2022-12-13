@@ -148,10 +148,10 @@ class Robot {
         int curRow = 1000, curCol = 1000; // current position of the robot
         sight[curRow][curCol] = "visited"; // mark the current cell value of robot as "visited"
 
-        String direction = "RIGHT"; // Right - Left - Down - Up = Right - Down - Left - Up
+        String direction = "RIGHT"; // Right - Down - Left - Up
         result = maze.go(direction);
-        System.out.println(direction);
         exploreCol++;
+        System.out.println(direction);
 
         // DFS - Backtracking - Find the deepest path
         while (!result.equals("win")) {
@@ -170,7 +170,7 @@ class Robot {
 
             isBacktracking = false;
 
-            // Calculate direction: Right - Left - Down - Up order
+            // Check direction to explore: Right - Down - Left - Up order
             if (sight[curRow][curCol + 1].isEmpty()) {
                 direction = "RIGHT";
                 exploreCol++;
@@ -184,6 +184,7 @@ class Robot {
                 direction = "UP";
                 exploreRow--;
             } else {
+                // If the robot reaches the cell that it cannot go R, D, L or U, it will then go back
                 isBacktracking = true;
                 direction = stack.peek();
                 if (direction.equals("RIGHT")) {
@@ -211,7 +212,7 @@ class Robot {
 // Array-based implementation of stack
 class ArrayStack<T> {
     private int size;
-    private static int MAX_SIZE = 100 * 100;
+    private static int MAX_SIZE = 2000 * 2000;
     private T[] items;
 
     public ArrayStack() {
