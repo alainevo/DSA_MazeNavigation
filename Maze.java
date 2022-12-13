@@ -154,14 +154,13 @@ class Robot {
         int curRow = 1000, curCol = 1000;
         sight[curRow][curCol] = "visited";
 
-        String direction = "DOWN"; // Down - Left - Right - Up
+        String direction = "RIGHT"; // Right - Left - Down - Up
         result = maze.go(direction);
         System.out.println(direction);
         // System.out.println("cur x " + curRow + " cur Y " + curCol);
-        exploreRow++;
+        exploreCol++;
 
         // DFS - Backtracking - Find the deepest path
-
         while (!result.equals("win")) {
             if (result.equals("false")) {
                 sight[exploreRow][exploreCol] = ".";
@@ -178,31 +177,31 @@ class Robot {
 
             isBacktracking = false;
 
-            // Calculate direction
-            if (sight[curRow + 1][curCol].isEmpty()) {
-                direction = "DOWN";
-                exploreRow++;
+            // Calculate direction: Right - Left - Down - Up order
+            if (sight[curRow][curCol + 1].isEmpty()) {
+                direction = "RIGHT";
+                exploreCol++;
             } else if (sight[curRow][curCol - 1].isEmpty()) {
                 direction = "LEFT";
                 exploreCol--;
-            } else if (sight[curRow][curCol + 1].isEmpty()) {
-                direction = "RIGHT";
-                exploreCol++;
+            } else if (sight[curRow + 1][curCol].isEmpty()) {
+                direction = "DOWN";
+                exploreRow++;
             } else if (sight[curRow - 1][curCol].isEmpty()) {
                 direction = "UP";
                 exploreRow--;
             } else {
                 isBacktracking = true;
                 direction = stack.peek();
-                if (direction.equals("DOWN")) {
-                    direction = "UP";
-                    exploreRow--;
+                if (direction.equals("RIGHT")) {
+                    direction = "LEFT";
+                    exploreCol--;
                 } else if (direction.equals("LEFT")) {
                     direction = "RIGHT";
                     exploreCol++;
-                } else if (direction.equals("RIGHT")) {
-                    direction = "LEFT";
-                    exploreCol--;
+                } else if (direction.equals("DOWN")) {
+                    direction = "UP";
+                    exploreRow--;
                 } else if (direction.equals("UP")) {
                     direction = "DOWN";
                     exploreRow++;
