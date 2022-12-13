@@ -9,13 +9,25 @@ public class Maze {
     public Maze() {
         // Note: in my real test, I will create much larger
         // and more complicated map
+        // rows = 4;
+        // cols = 5;
+        // map = new String[rows];
+        // map[0] = ".....";
+        // map[1] = ".   X";
+        // map[2] = ".   .";
+        // map[3] = ".....";
+        // robotRow = 2;
+        // robotCol = 1;
+
         rows = 4;
-        cols = 5;
+        cols = 7;
         map = new String[rows];
-        map[0] = ".....";
-        map[1] = ".   X";
-        map[2] = ".   .";
-        map[3] = ".....";
+        map[0] = ".......";
+        map[1] = ".  .  .";
+        map[2] = ".X   ..";
+        map[3] = ".......";
+        robotRow = 1;
+        robotCol = 5;
 
         // rows = 3;
         // cols = 5;
@@ -60,8 +72,6 @@ public class Maze {
         // map[29] = "....................................................................................................";
         // Test Case End
 
-        robotRow = 2;
-        robotCol = 1;
         steps = 0;
     }
 
@@ -202,9 +212,9 @@ class Robot {
                 }
                 stack.pop();
             }
-
-            result = maze.go(direction);
             System.out.println(direction);
+            result = maze.go(direction);
+            System.out.println("cur x " + curRow + " cur Y " + curCol);
 
         }
     }
