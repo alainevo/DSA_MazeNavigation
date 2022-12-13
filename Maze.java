@@ -203,8 +203,9 @@ class Robot {
                 stack.pop();
             }
 
-            System.out.println(direction);
             result = maze.go(direction);
+            System.out.println(direction);
+
         }
     }
 }
