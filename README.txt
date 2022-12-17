@@ -9,3 +9,4 @@ s3894290 - Nguyen Le Bao Han : 5
 s3872104 - Tran Thuc Ai Quynh : 5
 
 Project Video Link:
+https://www.youtube.com/watch?v=PtCPxRJ2yUY
