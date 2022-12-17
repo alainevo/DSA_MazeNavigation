@@ -9,13 +9,25 @@ public class Maze {
     public Maze() {
         // Note: in my real test, I will create much larger
         // and more complicated map
+        // rows = 4;
+        // cols = 5;
+        // map = new String[rows];
+        // map[0] = ".....";
+        // map[1] = ".   X";
+        // map[2] = ".   .";
+        // map[3] = ".....";
+        // robotRow = 2;
+        // robotCol = 1;
+
         rows = 4;
-        cols = 5;
+        cols = 7;
         map = new String[rows];
-        map[0] = ".....";
-        map[1] = ".   X";
-        map[2] = ".   .";
-        map[3] = ".....";
+        map[0] = ".......";
+        map[1] = ".  .  .";
+        map[2] = ".X   ..";
+        map[3] = ".......";
+        robotRow = 1;
+        robotCol = 5;
 
         // rows = 3;
         // cols = 5;
@@ -60,8 +72,6 @@ public class Maze {
         // map[29] = "....................................................................................................";
         // Test Case End
 
-        robotRow = 2;
-        robotCol = 1;
         steps = 0;
     }
 
@@ -128,40 +138,32 @@ class Robot {
         }
     }
 
-    public void printSight() {
-        for (int i = 990; i < 1010; i++) {
-            for (int j = 990; j < 1010; j++) {
-                if (sight[i][j] == "") {
-                    System.out.print("-");
-                } else {
-                    System.out.println(sight[i][j]);
-                }
-            }
-            System.out.println();
-        }
-    }
-
     // A very simple implementation
     // where the robot just go randomly
     public void navigate() {
+        // Create a new Maze object
         Maze maze = new Maze();
         String result = "";
+
+        // Initialize stack for further backtracking
         stack = new ArrayStack<String>();
+
+        // Clear array and stack to make sure the stack and array is empty at first
         initSight();
         clearStack();
-        boolean isBacktracking = false;
-        int exploreRow = 1000, exploreCol = 1000; // position of the robot
-        int curRow = 1000, curCol = 1000;
-        sight[curRow][curCol] = "visited";
 
-        String direction = "DOWN"; // Down - Left - Right - Up
+        // Initialize default value
+        boolean isBacktracking = false;
+        int exploreRow = 1000, exploreCol = 1000; // store the position of explored cell
+        int curRow = 1000, curCol = 1000; // current position of the robot
+        sight[curRow][curCol] = "visited"; // mark the current cell value of robot as "visited"
+
+        String direction = "RIGHT"; // Right - Down - Left - Up
         result = maze.go(direction);
+        exploreCol++;
         System.out.println(direction);
-        // System.out.println("cur x " + curRow + " cur Y " + curCol);
-        exploreRow++;
 
         // DFS - Backtracking - Find the deepest path
-
         while (!result.equals("win")) {
             if (result.equals("false")) {
                 sight[exploreRow][exploreCol] = ".";
@@ -178,42 +180,42 @@ class Robot {
 
             isBacktracking = false;
 
-            // Calculate direction
-            if (sight[curRow + 1][curCol].isEmpty()) {
+            // Check direction to explore: Right - Down - Left - Up order
+            if (sight[curRow][curCol + 1].isEmpty()) {
+                direction = "RIGHT";
+                exploreCol++;
+            } else if (sight[curRow + 1][curCol].isEmpty()) {
                 direction = "DOWN";
                 exploreRow++;
             } else if (sight[curRow][curCol - 1].isEmpty()) {
                 direction = "LEFT";
                 exploreCol--;
-            } else if (sight[curRow][curCol + 1].isEmpty()) {
-                direction = "RIGHT";
-                exploreCol++;
-            } else if (sight[curRow - 1][curCol].isEmpty()) {
+            }  else if (sight[curRow - 1][curCol].isEmpty()) {
                 direction = "UP";
                 exploreRow--;
             } else {
+                // If the robot reaches the cell that it cannot go R, D, L or U, it will then go back
                 isBacktracking = true;
                 direction = stack.peek();
-                if (direction.equals("DOWN")) {
+                if (direction.equals("RIGHT")) {
+                    direction = "LEFT";
+                    exploreCol--;
+                } else if (direction.equals("DOWN")) {
                     direction = "UP";
                     exploreRow--;
                 } else if (direction.equals("LEFT")) {
                     direction = "RIGHT";
                     exploreCol++;
-                } else if (direction.equals("RIGHT")) {
-                    direction = "LEFT";
-                    exploreCol--;
                 } else if (direction.equals("UP")) {
                     direction = "DOWN";
                     exploreRow++;
                 }
                 stack.pop();
             }
-
             System.out.println(direction);
-            // System.out.println("cur x " + curRow + " cur Y " + curCol);
             result = maze.go(direction);
-        
+            System.out.println("cur x " + curRow + " cur Y " + curCol);
+
         }
     }
 }
@@ -221,7 +223,7 @@ class Robot {
 // Array-based implementation of stack
 class ArrayStack<T> {
     private int size;
-    private static int MAX_SIZE = 100 * 100;
+    private static int MAX_SIZE = 2000 * 2000;
     private T[] items;
 
     public ArrayStack() {
