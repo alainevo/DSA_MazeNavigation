@@ -9,15 +9,15 @@ public class Maze {
     public Maze() {
         // Note: in my real test, I will create much larger
         // and more complicated map
-        rows = 4;
-        cols = 5;
-        map = new String[rows];
-        map[0] = ".....";
-        map[1] = ".   X";
-        map[2] = ".   .";
-        map[3] = ".....";
-        robotRow = 2;
-        robotCol = 1;
+        // rows = 4;
+        // cols = 5;
+        // map = new String[rows];
+        // map[0] = ".....";
+        // map[1] = ".   X";
+        // map[2] = ".   .";
+        // map[3] = ".....";
+        // robotRow = 2;
+        // robotCol = 1;
 
         // rows = 4;
         // cols = 7;
@@ -28,6 +28,17 @@ public class Maze {
         // map[3] = ".......";
         // robotRow = 1;
         // robotCol = 5;
+
+        rows = 5;
+        cols = 5;
+        map = new String[rows];
+        map[0] = ".....";
+        map[1] = ".   X";
+        map[2] = ". . .";
+        map[3] = ". . .";
+        map[4] = ".....";
+        robotRow = 2;
+        robotCol = 1;
 
         // rows = 7;
         // cols = 7;
@@ -42,7 +53,6 @@ public class Maze {
         // robotRow = 3;
         // robotCol = 3;
                 
-
         // rows = 3;
         // cols = 5;
         // map = new String[rows];
