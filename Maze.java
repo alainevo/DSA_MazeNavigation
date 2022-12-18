@@ -193,10 +193,12 @@ class Robot {
         // DFS - Backtracking - Find the deepest path
         while (!result.equals("win")) {
             if (result.equals("false")) {
+                // if the go() method returns false
                 sight[exploreRow][exploreCol] = ".";
                 exploreRow = curRow;
                 exploreCol = curCol;
             } else {
+                // if the go() method returns true
                 curRow = exploreRow;
                 curCol = exploreCol;
                 sight[curRow][curCol] = "visited";
