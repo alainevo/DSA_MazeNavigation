@@ -150,7 +150,7 @@ class Robot {
     }
 
     private void clearStack() {
-        if (stack.isEmpty() == false) {
+        while (stack.isEmpty() == false) {
             stack.pop();
         }
     }
@@ -257,26 +257,26 @@ class ArrayStack<T> {
     }
 
     public boolean push(T item) {
-        // make sure the stack still have empty slot
+        // check if the stack still have empty slot
         if (size < MAX_SIZE) {
-            items[size] = item;
-            size++;
+            items[size] = item; // assign value
+            size++; // increase size
             return true;
         }
         return false;
     }
 
     public boolean pop() {
-        // make sure the stack is not empty
+        // check if the stack has any item to pop out or not
         if (isEmpty()) {
             return false;
         }
-        size--;
+        size--; // decrease stack size
         return true;
     }
 
     public T peek() {
-        // make sure the stack is not empty
+        // check if the stack is empty or not to guarantee it has at least an item to return
         if (isEmpty()) {
             return null;
         }
